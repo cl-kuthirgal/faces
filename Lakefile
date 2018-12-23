@@ -1,1 +1,17 @@
-;; -*- mode: lisp -*-
+#|-*- mode:lisp -*-|#
+(in-package :cl-user)
+(defpackage :lake.user
+  (:use :cl :lake :cl-syntax)
+  (:shadowing-import-from :lake
+                          :directory))
+(in-package :lake.user)
+
+(use-syntax :interpol)
+
+(task "download-font" ("data/external/NotoSans-hinted.zip"))
+
+(file "data/external/NotoSans-hinted.zip" ("data/external")
+  (let ((url "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"))
+    (sh #?"wget -O data/external/NotoSans-hinted.zip ${url}")))
+
+(directory "data/external")
