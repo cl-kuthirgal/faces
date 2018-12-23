@@ -1,0 +1,61 @@
+# -*- mode: org -*-
+#+TITLE: obtt-lisp
+
+A slightly modified quickproject-ish template.
+
+* Variables
+
+- Name :: faces
+- Description :: Glyph analysis for a few scripts
+- Version :: 0.1.0
+
+* README
+
+#+BEGIN_SRC org :tangle ./README.org
+#+TITLE: faces
+
+Glyph analysis for a few scripts
+#+END_SRC
+
+* System definition
+There is nothing for tests as of now.
+
+#+BEGIN_SRC lisp :tangle ./faces.asd
+(defsystem #:faces
+:description "Glyph analysis for a few scripts"
+  :author "Abhinav Tushar <lepisma@fastmail.com>"
+  :license "GPLv3"
+  :version "0.1.0"
+  :depends-on (#:zpb-ttf
+               #:cl-vectors
+               #:alexandria
+               #:cl-cut
+               #:cl-interpol
+               #:cl-strings)
+  :components
+  ((:file "package")
+   (:module "src"
+    :depends-on ("package")
+    :serial t
+    :components
+    ((:file "faces")))))
+#+END_SRC
+
+* General module structure
+
+#+BEGIN_SRC lisp :tangle ./package.lisp
+(defpackage #:faces
+  (:use #:cl
+        #:alexandria
+        #:cl-cut))
+#+END_SRC
+
+#+BEGIN_SRC lisp :tangle ./src/faces.lisp
+(in-package #:faces)
+#+END_SRC
+
+* Misc files
+
+** TODO Add gitignore
+
+** TODO Optional Lakefile and Roswell setting
