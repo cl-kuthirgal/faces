@@ -9,6 +9,7 @@
                #:cl-cut
                #:cl-interpol
                #:cl-strings
+               #:cl-ppcre
                #:trivial-download)
   :components
   ((:file "package")
