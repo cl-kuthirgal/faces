@@ -8,7 +8,8 @@
                #:alexandria
                #:cl-cut
                #:cl-interpol
-               #:cl-strings)
+               #:cl-strings
+               #:trivial-download)
   :components
   ((:file "package")
    (:module "src"

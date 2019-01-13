@@ -1,5 +1,7 @@
 #|-*- mode:lisp -*-|#
 (in-package :cl-user)
+(ql:quickload :trivial-download)
+
 (defpackage :lake.user
   (:use :cl :lake :cl-syntax)
   (:shadowing-import-from :lake
@@ -8,19 +10,19 @@
 
 (use-syntax :interpol)
 
-(task "download-font" ("data/external/NotoSans/NotoSans-Regular.ttf"))
+(task "download-font" ("data/external/Noto/Noto-Regular.ttf"))
 (task "download-blocks" ("data/external/unicode-blocks.txt"))
 
-(file "data/external/NotoSans/NotoSans-Regular.ttf" ("data/external/NotoSans/NotoSans-hinted.zip")
-  (sh #?"unzip data/external/NotoSans/NotoSans-hinted.zip -d data/external/NotoSans"))
+(file "data/external/Noto/Noto-Regular.ttf" ("data/external/Noto/Noto-hinted.zip")
+  (sh #?"unzip data/external/Noto/Noto-hinted.zip -d data/external/Noto"))
 
-(file "data/external/NotoSans/NotoSans-hinted.zip" ("data/external/NotoSans")
-  (let ((url "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"))
-    (sh #?"wget -O data/external/NotoSans/NotoSans-hinted.zip ${url}")))
+(file "data/external/Noto/Noto-hinted.zip" ("data/external/Noto")
+  (let ((url "https://noto-website-2.storage.googleapis.com/pkgs/Noto-hinted.zip"))
+    (trivial-download:download url "data/external/Noto/Noto-hinted.zip")))
 
 (file "data/external/unicode-blocks.txt" ("data/external")
   (let ((url "https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt"))
-    (sh #?"wget -O data/external/unicode-blocks.txt ${url}")))
+    (trivial-download:download url "data/external/unicode-blocks.txt")))
 
 (directory "data/external")
-(directory "data/external/NotoSans")
+(directory "data/external/Noto")
