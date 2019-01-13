@@ -9,6 +9,7 @@
 (use-syntax :interpol)
 
 (task "download-font" ("data/external/NotoSans/NotoSans-Regular.ttf"))
+(task "download-blocks" ("data/external/unicode-blocks.txt"))
 
 (file "data/external/NotoSans/NotoSans-Regular.ttf" ("data/external/NotoSans/NotoSans-hinted.zip")
   (sh #?"unzip data/external/NotoSans/NotoSans-hinted.zip -d data/external/NotoSans"))
@@ -17,4 +18,9 @@
   (let ((url "https://noto-website-2.storage.googleapis.com/pkgs/NotoSans-hinted.zip"))
     (sh #?"wget -O data/external/NotoSans/NotoSans-hinted.zip ${url}")))
 
+(file "data/external/unicode-blocks.txt" ("data/external")
+  (let ((url "https://www.unicode.org/Public/UCD/latest/ucd/Blocks.txt"))
+    (sh #?"wget -O data/external/unicode-blocks.txt ${url}")))
+
+(directory "data/external")
 (directory "data/external/NotoSans")
