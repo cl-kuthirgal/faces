@@ -17,4 +17,6 @@
     :depends-on ("package")
     :serial t
     :components
-    ((:file "faces")))))
+    ((:file "utils")
+     (:file "features")
+     (:file "faces")))))
